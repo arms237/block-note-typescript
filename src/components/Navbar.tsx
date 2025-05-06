@@ -1,4 +1,4 @@
-import { AlignJustify, NotebookPen, Search, X } from 'lucide-react';
+import { AlignJustify, Archive, House, NotebookPen, Search, X } from 'lucide-react';
 import { Link, NavLink } from 'react-router-dom';
 import React, { useRef, useState, useEffect } from 'react';
 
@@ -7,6 +7,9 @@ const Navbar = () => {
     const navActiveRef = useRef(null);
     const menuRef = useRef(null);
 
+    useEffect(()=>{
+
+    },[])
     return (
         <div className=' w-screen flex flex-col items-center'>
             <div className='flex  items-center justify-between w-3/4 max-md:w-full bg-base-100  p-3 rounded-sm shadow-lg m-2 h-15 '>
@@ -22,7 +25,7 @@ const Navbar = () => {
                                     color: isActive
                                     ? 'orange'
                                     : '',
-                                })} to='/'>Acceuil</NavLink>
+                                })} to='/'> <House/> Acceuil</NavLink>
                         </li>
 
                         <li>
@@ -30,7 +33,7 @@ const Navbar = () => {
                             style={({ isActive }) => ({
                                     color: isActive
                                     ? 'orange': ''
-                                    })} to='/notes'>Notes</NavLink>
+                                    })} to='/notes'><NotebookPen /> Notes</NavLink>
                         </li>
 
                         <li>
@@ -38,7 +41,7 @@ const Navbar = () => {
                                     color: isActive
                                     ? 'orange'
                                     : '',
-                                    })} to='/archives'>Archives</NavLink>
+                                    })} to='/archives'> <Archive /> Archives</NavLink>
                         </li>
 
                     </ul>
@@ -78,12 +81,15 @@ const Navbar = () => {
 
                 {/* Mobile Menu */}
                 <div 
-                    className='fixed h-screen top-0 -right-100 flex flex-col items-center gap-y-4 bg-base-100 shadow-2xl w-3/4 p-4'
-                                   
-                >
+                    ref={menuRef}
+                    className='md:hidden fixed h-screen top-0 right-0 transition-all duration-300 ease-in-out flex flex-col  gap-y-4 bg-base-100 shadow-2xl w-3/4 p-4'
+                    style={{transform: isMenuOpen ? 'translateX(0)' : 'translateX(100%)'}}               
+                    >
                     <div className='flex justify-between w-full'>
                         <h1>Menu</h1>
-                        <button><X/></button>
+                        <button
+                        onClick={() => setIsMenuOpen(false)}
+                        ><X/></button>
                     </div>
                     <label className="input">
                             <svg className="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -102,8 +108,9 @@ const Navbar = () => {
                     </label>
                     <nav >
                         <ul className='flex flex-col gap-y-3'>
-                            <li>
-                                <NavLink 
+                            <li className=''>
+                                <NavLink
+                                onClick={()=>setIsMenuOpen(false)} 
                                 style={({ isActive }) => ({
                                         color: isActive
                                         ? 'orange'
@@ -112,7 +119,8 @@ const Navbar = () => {
                             </li>
 
                             <li>
-                                <NavLink 
+                                <NavLink
+                                onClick={()=>setIsMenuOpen(false)} 
                                 style={({ isActive }) => ({
                                         color: isActive
                                         ? 'orange': ''
@@ -120,17 +128,16 @@ const Navbar = () => {
                             </li>
 
                             <li>
-                                <NavLink style={({ isActive }) => ({
-                                        color: isActive
-                                        ? 'orange'
-                                        : '',
-                                        })} to='/archives'>Archives</NavLink>
+                                <NavLink
+                                    onClick={()=>setIsMenuOpen(false)} style={({ isActive }) => ({
+                                    color: isActive
+                                    ? 'orange'
+                                    : '',
+                                    })} to='/archives'>Archives</NavLink>
                             </li>
                         </ul>
                     </nav>
-                </div>    
-                    
-                                        
+                </div>                            
             </div>
                                     
         </div>
