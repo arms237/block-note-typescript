@@ -77,7 +77,58 @@ const Navbar = () => {
                 </button>
 
                 {/* Mobile Menu */}
-                
+                <div 
+                    className='fixed h-screen top-0 -right-100 flex flex-col items-center gap-y-4 bg-base-100 shadow-2xl w-3/4 p-4'
+                                   
+                >
+                    <div className='flex justify-between w-full'>
+                        <h1>Menu</h1>
+                        <button><X/></button>
+                    </div>
+                    <label className="input">
+                            <svg className="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <g
+                                strokeLinejoin="round"
+                                strokeLinecap="round"
+                                strokeWidth="2.5"
+                                fill="none"
+                                stroke="currentColor"
+                            >
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <path d="m21 21-4.3-4.3"></path>
+                            </g>
+                            </svg>
+                            <input type="search" className="grow" placeholder="Search" />
+                    </label>
+                    <nav >
+                        <ul className='flex flex-col gap-y-3'>
+                            <li>
+                                <NavLink 
+                                style={({ isActive }) => ({
+                                        color: isActive
+                                        ? 'orange'
+                                        : '',
+                                    })} to='/'>Acceuil</NavLink>
+                            </li>
+
+                            <li>
+                                <NavLink 
+                                style={({ isActive }) => ({
+                                        color: isActive
+                                        ? 'orange': ''
+                                        })} to='/notes'>Notes</NavLink>
+                            </li>
+
+                            <li>
+                                <NavLink style={({ isActive }) => ({
+                                        color: isActive
+                                        ? 'orange'
+                                        : '',
+                                        })} to='/archives'>Archives</NavLink>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>    
                     
                                         
             </div>
